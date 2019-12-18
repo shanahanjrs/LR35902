@@ -19,8 +19,10 @@ def main():
     print(f'{mb.cpu}')
     print('==== mem ====')
     print(f'{mb.mem[:500]}')
-    print(f'{mb.cpu.ld(0x99)}')
-    print(f'{mb.cpu.ld(0x190)}')
+    print(f'{mb.cpu.ld8(0x99)}')
+    print(f'{mb.cpu.ld16(0x99)}')
+    print(f'{mb.cpu.ld8(0x190)}')
+    print(f'{mb.cpu.ld16(0x190)}')
     ##print(f'==== gpu ({mb.gpu.width}x{mb.gpu.height})({mb.gpu.resolution})====')
     ##print(f'{mb.gpu}')
 

@@ -50,7 +50,10 @@ class CPU:
         self.c = 0x0
         self.d = 0x0
         self.e = 0x0
-        self.f = 0x0             # flags
+        self.fz = 0x0            # zero flag
+        self.fn = 0x0            # subtraction flag
+        self.fh = 0x0            # half carry flag
+        self.fc = 0x0            # carry flag
         self.h = 0x0
         self.l = 0x0
         self.sp = 0x0            # stack pointer
@@ -65,7 +68,10 @@ class CPU:
             'c': hex(self.c),
             'd': hex(self.d),
             'e': hex(self.e),
-            'f': hex(self.f),
+            'fz': hex(self.fz),
+            'fn': hex(self.fn),
+            'fh': hex(self.fh),
+            'fc': hex(self.fc),
             'h': hex(self.h),
             'l': hex(self.l),
             'sp': hex(self.sp),
@@ -101,6 +107,10 @@ class CPU:
             # draw here
             self.cycles = 0
 
-    def ld(self, addr):
-        """ load from a memory address """
+    def ld8(self, addr):
+        """ load 8 bits from a memory address """
         return self.mem[addr]
+
+    def ld16(self, addr):
+        """ load 16 bits from a memory address """
+        return (self.mem[addr] >> 8)|(self.mem[addr+1])  # TODO: ?
