@@ -57,4 +57,37 @@ def INC_BC(cpu):
 def INC_B(cpu):
     """ 0x04 1b 4c Z 0 H - """
     cpu.b += 1
-    # set flag Z0H-
+    cpu.fz = 0x1 if cpu.b == 0 else 0x0
+    cpu.fn = 0x0
+    cpu.fh = 0x1 if cpu.b > 256 else 0x0
+
+def DEC_B(cpu):
+    """ 0x05 1b 4c Z 1 H - """
+    cpu.b -= 1
+    cpu.fz = 0x1 if cpu.b == 0 else 0x0
+    cpu.fn = 0x1
+    cpu.fh = 0x1 if cpu.b > 256 else 0x0
+
+def LD_B_D8(cpu, d):
+    """ 0x06 2b 8c - - - - """
+    cpu.b = d
+
+def RLCA(cpu):
+    """ 0x07 1b 4c 0 0 0 C """
+    # Rotate C and put the 7th bit in reg A
+    pass
+
+def LD_A16_SP(cpu):
+    """ 0x08 3b 20c - - - - """
+    cpu.a = cpu.sp
+
+def ADD_HL_BC(cpu):
+    """ 0x09 1b 8c - 0 H C """
+    cpu.set_hl(cpu.bc)
+    cpu.fn = 0x0
+    cpu.fh = 0x1 if cpu.hl > 256 else 0x0
+    #cpu.fc = ?
+
+def LD_A_BC(cpu):
+    """ 0x0A 1b 8c - - - - """
+    cpu.a = cpu.bc
