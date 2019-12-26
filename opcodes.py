@@ -91,3 +91,7 @@ def ADD_HL_BC(cpu):
 def LD_A_BC(cpu):
     """ 0x0A 1b 8c - - - - """
     cpu.a = cpu.bc
+
+def DEC_BC(cpu):
+    """ 0x0b 1b 8c - - - -"""
+    cpu.set_bc(cpu.get_bc()-1)
