@@ -95,3 +95,8 @@ def LD_A_BC(cpu):
 def DEC_BC(cpu):
     """ 0x0b 1b 8c - - - -"""
     cpu.set_bc(cpu.get_bc()-1)
+
+def INC_C(cpu):
+    """ 0x0c 1b 4c Z 0 H - """
+    cpu.c = cpu.c+1
+    # set flags
